@@ -1,60 +1,77 @@
+# Arreglo con todas las rutas
 class Routes < Array
-    def add(method, path, options=nil, &action)
-        self << Route.new(method,path,options,&action)
+    def add(method, path, &action)
+        self << Route.new(method,path,&action)
     end
 
     # Este metodo mira si una ruta dada coinide con alguna  
     # de las rutas internas.
     # Retorna la primer ruta que haga match.
-    def math(method, path)
-        return nil if self.empty?
+    def match(method, path)
+        return nil,nil if self.empty?
         method = method.to_s.downcase.strip.to_sym
         routes = self.select{|i| i.method = method}
-        pahts = routes.map{|i| i.path}
-        path, values = Router.match(path,paths)
+        paths = routes.map{|i| i.path}
+        against = Path.new path
+        paths.each do |p|
+            res, vals = p.path.match against
+            return p, vals
+        end
+        return nil,nil
     end
 end
 
 class Route
-    attr_accessor :pattern,:options,:action
+    attr_accessor :path,:options,:action
 
     def initialize(method, path, options, &action)
-        @pattern = Pattern.new(metodo,path)
-        @options = options
+        @method = method.to_s.downcase.strip.to_sym
+        @path = Path.new path
         @action = action
     end
 
 end
 
-# Clase que representa un patron de la forma
-# metodo /static1/static2/.../staticn/:opt1/:opt2...
+# Clase que representa un path de la forma
+# /static1/static2/.../staticn/:opt1/:opt2.../file.ext
 # Tiene la capacidad de hacer math con un path concreto
 # y devolver los parametros.
-class Pattern
-    attr_accessor :method, :path
-    def initialize(method, path)
-        
-    end
-end
-
-# Clase encargada de hacer el mathing entre una ruta
-# y una lista de rutas.
-# Ademas retorna los valores encontrados.
-class Router
-    def self.match(path,paths)
-        
-    end
-
-    def static_match
-    end
-
-    def values_mathc
-    end
-end
-
-# Clase que representa una uri, contiene las partes y
-# la extension del recurso solicitado.
 class Path
-end
+    attr_accessor :extension, :parts
+    def initialize(path)
+        # Get the resource extension
+        if(path.split('.').size == 1)
+            @extension = nil
+        else
+            @extension = "." + path.split('.').last
+        end
+        path = path.sub(/#{@extension}$/,'') if @extension != nil
+        @parts = path.split('/').reject{|a|a==""}
+    end
 
+    # Hace el match entre este path y otro dado, y retorna los valores
+    # correspondientes a los parametros opcionales.
+    def match? path
+        if(path.extension == @extension && static_match(path) && values_match(path))
+            values = []
+            @parts.each_with_index do |p,i|
+                values << path.parts[i] if p[0] == ':'
+            end
+            values << path.extension[1..-1] if @extension != nil && @extension[1] == ':'
+            return true,values
+        else
+            return false, nil
+        end
+    end 
+
+    def static_match? path
+        @parts.each_with_index do |p|
+            return false unless p[0] == ':' || path.parts[i] == p
+        end
+        return true
+    end
+
+    def values_match? path
+        return @parts.size == path
+    end
 end
