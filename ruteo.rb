@@ -1,21 +1,29 @@
-class RuteoApp    
-    def test(env)
-        [200, {"Content-Type" => "text/plain"}, "Funciona!!!"]
+require 'routes'
+require 'dsl'
+
+class RuteoApp
+    include DSL    
+
+    get '/home' do
+        "Hello World"
     end
-    
-    def test2(env)
-        [200, {"Content-Type" => "text/plain"}, "Confirmado, funciona!!!"]
+
+    get '/home2' do
+        "Yuhu"
+    end
+
+    get '/fecha/:month/:dia' do |month,dia|
+        month.to_s + " " + dia.to_s
     end
 
     def call(env)
-        path = env["PATH_INFO"][1..-1]
-        case
-        when path == ""
-            [200, {"Content-Type" => "text/plain"}, "Pagina de inicio"]
-        when (self.respond_to? path)
-            self.send( path, env )
+        path = env["PATH_INFO"]
+        method = env['REQUEST_METHOD']
+        route,vals = self.class.routes.match method, path        
+        if route.nil?
+            return [404, {'Content-Type' => 'text/html'}, '404 page not found']
         else
-            [200, {"Content-Type" => "text/plain"}, "Not found!!"]
+            return [200, {'Content-Type' => 'text/html'}, route.action.call(*vals)]
         end
     end
 

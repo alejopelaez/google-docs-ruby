@@ -10,21 +10,23 @@ class Routes < Array
     def match(method, path)
         return nil,nil if self.empty?
         method = method.to_s.downcase.strip.to_sym
-        routes = self.select{|i| i.method = method}
-        paths = routes.map{|i| i.path}
+        routes = self.select{|i| i.method == method}        
         against = Path.new path
-        paths.each do |p|
-            res, vals = p.path.match against
-            return p, vals
+        routes.each do |r|
+            puts "---"
+            puts against.parts
+            puts r.path.parts
+            res, vals = r.path.match? against
+            return r, vals if res
         end
         return nil,nil
     end
 end
 
 class Route
-    attr_accessor :path,:options,:action
+    attr_accessor :path,:method,:action
 
-    def initialize(method, path, options, &action)
+    def initialize(method, path, &action)
         @method = method.to_s.downcase.strip.to_sym
         @path = Path.new path
         @action = action
@@ -51,13 +53,13 @@ class Path
 
     # Hace el match entre este path y otro dado, y retorna los valores
     # correspondientes a los parametros opcionales.
-    def match? path
-        if(path.extension == @extension && static_match(path) && values_match(path))
+    def match? path        
+        if(path.extension == @extension && static_match?(path) && values_match?(path))
             values = []
             @parts.each_with_index do |p,i|
-                values << path.parts[i] if p[0] == ':'
+                values << path.parts[i] if p[0] == ?:
             end
-            values << path.extension[1..-1] if @extension != nil && @extension[1] == ':'
+            values << path.extension[1..-1] if @extension != nil && @extension[1] == ?:
             return true,values
         else
             return false, nil
@@ -65,13 +67,14 @@ class Path
     end 
 
     def static_match? path
-        @parts.each_with_index do |p|
-            return false unless p[0] == ':' || path.parts[i] == p
+        @parts.each_with_index do |p,i|
+            puts p[0]
+            return false unless p[0] == ?: || path.parts[i] == p
         end
         return true
     end
 
     def values_match? path
-        return @parts.size == path
+        return @parts.size == path.parts.size
     end
 end
