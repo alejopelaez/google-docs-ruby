@@ -1,6 +1,7 @@
 require 'routes'
 require 'dsl'
-
+$LOAD_PATH << './model'
+require 'country'
 class RuteoApp
   include DSL
 
