@@ -18,7 +18,7 @@ class RuteoApp
   end
 
   get '/country' do
-    Country.getCountry("0AsTunpthKrMxdEp5R1loYjBBcVhNQWVEc1BUZmZ1QUE")
+    Country.getCountry("0AsTunpthKrMxdEp5R1loYjBBcVhNQWVEc1BUZmZ1QUE").to_s
   end
   def call(env)
     path = env["PATH_INFO"]
