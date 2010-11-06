@@ -1,7 +1,7 @@
 require 'routes'
 require 'dsl'
 
-$LOAD_PATH << './controller' << './model'
+$LOAD_PATH << 'controller' << 'model'
 require 'countries_controller'
 require 'country'
 class RuteoApp
