@@ -41,4 +41,3 @@ class Table
   
 end
 
-cla
