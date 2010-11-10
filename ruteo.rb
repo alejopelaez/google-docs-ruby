@@ -1,6 +1,7 @@
 require './lib/routes'
 require './lib/dsl'
-
+require 'tilt'
+require 'erb'
 $LOAD_PATH << 'controller' 
 require 'countries_controller'
 $LOAD_PATH << 'model'
