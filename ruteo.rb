@@ -1,9 +1,14 @@
 require './lib/routes'
 require './lib/dsl'
 
-$LOAD_PATH << 'controller' << 'model'
+$LOAD_PATH << 'controller' 
 require 'countries_controller'
+$LOAD_PATH << 'model'
 require 'country'
+require 'state'
+require 'city'
+require 'center'
+require 'table'
 class RuteoApp
   include DSL
 

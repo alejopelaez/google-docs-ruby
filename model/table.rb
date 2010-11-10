@@ -1,15 +1,15 @@
 require 'api/gdocs'
-class Country
-  attr_accessor :id, :name, :states
-  def initialize(id, name, states)
+class Table
+  attr_accessor :id, :name, :votos
+  def initialize(id, name, votos)
     @id = id
     @name = name
-    @states = states
+    @votos = votos
   end
   def to_s
-    "#{@id} #{@name} #{@states}"
+    "~~~#{@id} #{@name} #{@votos}~~~"
   end
-  def self.getCountry(key)
+  def self.getTable(key)
     parse_instance(API::Gdocs.getSheet(key),key)
   end
   protected
@@ -17,24 +17,28 @@ class Country
     begin
       table = attributes["table"]
       name = table["rows"][0]["c"][1]["v"]
+      
       rows = table["rows"]
-      states_content = []
+      votos_content = {}
       blanks = false
       rows.each do |r|
         if r["c"][0]["v"].blank?
           blanks = true
         end
         if blanks and not r["c"][0]["v"].blank?
-          states_content << r["c"][1]["v"]
+          votos_content[r["c"][0]["v"].downcase] = r["c"][1]["v"].to_i
         end
       end
-      states = states_content.map do |s|
-         State.getState(s)
-      end
-      Country.new(id, name, states)
+      # tables = tablescities_content.map do |t|
+#         Table.getTable(t)
+#       end
+      
+      Table.new(id,name,votos_content)
     rescue
       raise Exception.new("Problems with the sheet #{id}")
     end
   end
+  
 end
 
+cla
