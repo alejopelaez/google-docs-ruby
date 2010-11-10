@@ -7,7 +7,7 @@ class State
     @cities = cities
   end
   def to_s
-    "--#{@id} #{@name} #{@cities}--"
+    "#{@name}\n\t\t#{@cities}"
   end
   def self.getState(key)
     parse_instance(API::Gdocs.getSheet(key),key)

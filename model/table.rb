@@ -7,7 +7,7 @@ class Table
     @votos = votos
   end
   def to_s
-    "~~~#{@id} #{@name} ;;;#{@votos};;;~~~"
+    "#{@name}\n\t\t\t\t\t#{@votos}"
   end
   def self.getTable(key)
     parse_instance(API::Gdocs.getSheet(key),key)

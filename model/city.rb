@@ -7,7 +7,7 @@ class City
     @centers = centers
   end
   def to_s
-    "**#{@id} #{@name} #{@centers}**"
+    "#{@name}\n\t\t\t#{@centers}"
   end
   def self.getCity(key)
     parse_instance(API::Gdocs.getSheet(key),key)

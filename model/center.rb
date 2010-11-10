@@ -7,7 +7,7 @@ class Center
     @tables = tables
   end
   def to_s
-    "++#{@id} #{@name} #{@tables}++"
+    "#{@name}\n\t\t\t\t#{@tables}"
   end
   def self.getCenter(key)
     parse_instance(API::Gdocs.getSheet(key),key)
