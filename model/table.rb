@@ -7,7 +7,7 @@ class Table
     @votos = votos
   end
   def to_s
-    "~~~#{@id} #{@name} #{@votos}~~~"
+    "~~~#{@id} #{@name} ;;;#{@votos};;;~~~"
   end
   def self.getTable(key)
     parse_instance(API::Gdocs.getSheet(key),key)
@@ -16,7 +16,7 @@ class Table
   def self.parse_instance(attributes, id)
     begin
       table = attributes["table"]
-      name = table["rows"][0]["c"][1]["v"]
+      name =  "mesa" + table["rows"][0]["c"][1]["v"].to_s
       
       rows = table["rows"]
       votos_content = {}
