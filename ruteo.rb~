@@ -1,5 +1,5 @@
-require 'lib/routes'
-require 'lib/dsl'
+require 'routes'
+require 'dsl'
 
 $LOAD_PATH << 'controller' << 'model'
 require 'countries_controller'
