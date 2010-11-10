@@ -15,7 +15,7 @@ class Country
   protected
   def self.parse_instance(attributes, id)
     begin
-      Country.new(id, attributes)
+      Country.new(id, attributes, "")
     rescue
       raise Exception.new("Problems with the sheet #{id}")
     end
