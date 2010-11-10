@@ -1,5 +1,3 @@
-require 'routes.rb'
-
 module DSL
     def self.included(base)
         base.extend(ClassMethods)
