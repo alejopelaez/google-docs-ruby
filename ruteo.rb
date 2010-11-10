@@ -1,7 +1,6 @@
 require './lib/routes'
 require './lib/dsl'
-require 'tilt'
-require 'erb'
+require './lib/template'
 $LOAD_PATH << 'controller' 
 require 'countries_controller'
 $LOAD_PATH << 'model'
@@ -19,6 +18,11 @@ class RuteoApp
     #  0AsTunpthKrMxdEp5R1loYjBBcVhNQWVEc1BUZmZ1QUE
   end
 
+  get '/sample' do
+    @hi  = "hola"
+    @bye = 'chao'
+    Template.out('views/hola.html.erb',@hi,@bye)
+  end
   def call(env)
     path = env["PATH_INFO"]
     method = env['REQUEST_METHOD']

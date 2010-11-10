@@ -40,3 +40,4 @@ class Center
   end
   
 end
+clas

@@ -29,10 +29,6 @@ class Table
           votos_content[r["c"][0]["v"].downcase] = r["c"][1]["v"].to_i
         end
       end
-      # tables = tablescities_content.map do |t|
-#         Table.getTable(t)
-#       end
-      
       Table.new(id,name,votos_content)
     rescue
       raise Exception.new("Problems with the sheet #{id}")
