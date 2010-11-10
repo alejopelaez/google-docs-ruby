@@ -7,7 +7,7 @@ class Country
     @states = states
   end
   def to_s
-    "##{@name}\n\t#{@states}"
+    "#{@name}\n\t#{@states}"
   end
   def self.getCountry(key)
     parse_instance(API::Gdocs.getSheet(key),key)
