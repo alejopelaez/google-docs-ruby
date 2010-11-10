@@ -14,10 +14,9 @@ class Country
   end
   protected
   def self.parse_instance(attributes, id)
-    code = attributes.response.code.to_i
-    if code >= 200 and code < 300
-      Country.new(id, attributes.parsed_response)
-    else
+    begin
+      Country.new(id, attributes)
+    rescue
       raise Exception.new("Problems with the sheet #{id}")
     end
   end
