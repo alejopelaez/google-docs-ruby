@@ -5,7 +5,9 @@
     <link rel="stylesheet" href="/public/main.css" type="text/css" media="screen" title="Main CSS" charset="utf-8">
   </head>
   <body>
+
     <div id="container">
+      <h1> Sistema nacional para el conteo de votos</h1>
       <form action="/country" method="post">
 	<p> 
 	  <label for="key">Key: </label>
@@ -15,6 +17,24 @@
       </form>
       
       <%= yield %>
+      <div class="zinergia">
+	<hr/>
+	<div class="left">
+	  <img src="/public/images/zinergia.png" alt="zinergia" height="200"/>
+	</div>
+	<div class="right">
+	  <p>
+	    Esta es una aplicación <a href="https://github.com/alejopelaez/google-docs-ruby">open source</a> 
+	    desarrollada por <a href="https://github.com/alejopelaez">alejopelaez</a>
+	    y <a href="https://github.com/sarcilav">sarcilav</a>, que trae datos desde google docs con ruby
+	    y esta corriendo en <a href="http://my-powa.heroku.com/">heroku</a>
+	    </p>
+	  <p>
+	    **Nota si estas teniendo problemas puedes usar este key 0AsTunpthKrMxdEp5R1loYjBBcVhNQWVEc1BUZmZ1QUE
+	  </p>
+	</div>
+      </div>
     </div>
+
   </body>
 </html>

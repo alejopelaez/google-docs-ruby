@@ -1,0 +1,15 @@
+h1. GOOGLE-DOCS-RUBY
+
+Trae la información correspondiente a unas votaciones guardadas en spreadsheets de google
+
+h2. Testing
+
+Un ejemplo de key es 0AsTunpthKrMxdEp5R1loYjBBcVhNQWVEc1BUZmZ1QUE
+
+h4. Gemas requeridas
+ * rack
+ * httparty
+ * crack
+ * tilt
+ * gchartrb
+

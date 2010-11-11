@@ -69,3 +69,23 @@ a:link {text-decoration: none}
 a:visited {text-decoration: none}
 a:active {text-decoration: none}
 a:hover {text-decoration: underline}
+.zinergia{
+    height: 200px;
+    margin: 5px auto;
+    position:relative;
+}
+.imagenes{
+text-align:center;
+}
+h1{
+text-align:center;
+}
+.left{
+    float:left;
+    padding-left: 200px;
+}
+.right{
+    float:right;
+    width: 400px;
+    padding-right: 200px;
+}
