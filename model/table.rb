@@ -12,6 +12,9 @@ class Table
   def self.getTable(key)
     parse_instance(API::Gdocs.getSheet(key),key)
   end
+  def get_totals
+    @totals||={:piedad => @votos["piedad"], :reyes => @votos["reyes"], :jojoy => @votos["jojoy"]}
+  end
   protected
   def self.parse_instance(attributes, id)
     begin

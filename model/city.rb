@@ -12,6 +12,16 @@ class City
   def self.getCity(key)
     parse_instance(API::Gdocs.getSheet(key),key)
   end
+
+  def get_totals
+    @totales ||= {:piedad => 0, :reyes => 0, :jojoy => 0}
+    @centers.each do |center|
+      center.get_totals.each_pair do |c,v|
+        @totales[c] += v
+      end
+    end
+    @totales
+  end
   protected
   def self.parse_instance(attributes, id)
     begin

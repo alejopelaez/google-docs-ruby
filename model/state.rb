@@ -14,18 +14,13 @@ class State
   end
 
   def get_totals
-    totales = {:piedad => 0, :reyes => 0, :jojoy => 0}
-    
-    cities.each do |c|
-      c.centers.each do |center|
-        center.tables.each do |t|
-          totales[:piedad] += t.votos["piedad"]
-          totales[:jojoy] += t.votos["jojoy"]
-          totales[:reyes] += t.votos["reyes"]
-        end
+    @totales ||= {:piedad => 0, :reyes => 0, :jojoy => 0}
+    @cities.each do |city|
+      city.get_totals.each_pair do |c,v|
+        @totales[c] += v
       end
-    end    
-    return totales
+    end
+    @totales
   end
 
   protected
