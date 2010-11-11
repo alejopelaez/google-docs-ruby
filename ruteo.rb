@@ -1,6 +1,7 @@
 require './lib/routes'
 require './lib/dsl'
 require './lib/template'
+require './lib/grapher'
 $LOAD_PATH << 'controller' 
 require 'countries_controller'
 $LOAD_PATH << 'model'
@@ -9,6 +10,7 @@ require 'state'
 require 'city'
 require 'center'
 require 'table'
+
 class RuteoApp
   include DSL
   include Template
@@ -22,6 +24,9 @@ class RuteoApp
   post '/country' do 
     @country = CountriesController.show(@@params["key"])    
     @totales = @country.get_totals
+    @bar_chart = Grapher.bar_chart("Resultados",{:Piedad => [[@totales[:piedad]],Grapher::RED], 
+                                                  :Jojoy => [[@totales[:jojoy]],Grapher::BLUE],
+                                                  :Reyes => [[@totales[:reyes]],Grapher::GREEN]})
     "countries/result"
   end
   
