@@ -80,7 +80,7 @@ th {
 	text-transform: uppercase;
 	text-align: left;
 	padding: 6px 6px 6px 12px;
-	background: #CAE8EA url(public/images/bg_header.jpg) no-repeat;
+	background: #D2D2FF url(public/images/bg_header.jpg) no-repeat;
 }
 
 th.nobg {
@@ -100,6 +100,6 @@ td {
 
 
 td.alt {
-	background: #F5FAFA;
+	background: #D2D2FF;
 	color: #797268;
 }

@@ -12,6 +12,22 @@ class State
   def self.getState(key)
     parse_instance(API::Gdocs.getSheet(key),key)
   end
+
+  def get_totals
+    totales = {:piedad => 0, :reyes => 0, :jojoy => 0}
+    
+    cities.each do |c|
+      c.centers.each do |center|
+        center.tables.each do |t|
+          totales[:piedad] += t.votos["piedad"]
+          totales[:jojoy] += t.votos["jojoy"]
+          totales[:reyes] += t.votos["reyes"]
+        end
+      end
+    end    
+    return totales
+  end
+
   protected
   def self.parse_instance(attributes, id)
     begin

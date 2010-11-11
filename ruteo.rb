@@ -20,7 +20,8 @@ class RuteoApp
   end
   
   post '/country' do 
-    @country = CountriesController.show(@@params["key"])
+    @country = CountriesController.show(@@params["key"])    
+    @totales = @country.get_totals
     "countries/result"
   end
   
