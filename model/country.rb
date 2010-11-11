@@ -14,10 +14,12 @@ class Country
   end
 
   def get_totals
-    @totales ||= {:piedad => 0, :reyes => 0, :jojoy => 0}
-    @states.each do |s|
-      s.get_totals.each_pair do |c, v|
-        @totales[c] += v
+    if @totales.nil?
+      @totales ||= {:piedad => 0, :reyes => 0, :jojoy => 0}
+      @states.each do |s|
+        s.get_totals.each_pair do |c, v|
+          @totales[c] += v
+        end
       end
     end
     @totales

@@ -1,5 +1,8 @@
 require 'erb'
 require 'tilt'
+def link_image(name,hash_totals)#      <a href="/graphs/Colombia/<%= @country.get_totals[:piedad]%>/<%= @country.get_totals[:jojoy] %>/<%= @country.get_totals[:reyes]%>"> Colombia </a></th>
+  "<a href='/graphs/#{name.capitalize}/#{hash_totals[:piedad]}/#{hash_totals[:jojoy]}/#{hash_totals[:reyes]}'> #{name.capitalize} </a>"
+end
 module Template
   def self.included(base)
     base.extend(ClassMethods)

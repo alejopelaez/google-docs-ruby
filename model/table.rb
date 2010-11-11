@@ -19,7 +19,7 @@ class Table
   def self.parse_instance(attributes, id)
     begin
       table = attributes["table"]
-      name =  "mesa" + table["rows"][0]["c"][1]["v"].to_s
+      name =  "mesa " + table["rows"][0]["c"][1]["v"].to_i.to_s
       
       rows = table["rows"]
       votos_content = {}

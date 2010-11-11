@@ -13,10 +13,12 @@ class Center
     parse_instance(API::Gdocs.getSheet(key),key)
   end
   def get_totals
-    @totales ||= {:piedad => 0, :reyes => 0, :jojoy => 0}
-    @tables.each do |t|
-      t.get_totals.each_pair do |c,v|
-        @totales[c] += v
+    if @totales.nil?
+      @totales ||= {:piedad => 0, :reyes => 0, :jojoy => 0}
+      @tables.each do |t|
+        t.get_totals.each_pair do |c,v|
+          @totales[c] += v
+        end
       end
     end
     @totales

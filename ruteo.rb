@@ -15,13 +15,16 @@ class RuteoApp
   include DSL
   include Template
   @@params = []
-    
+  get '/graphs/:where/:piedad/:jojoy/:reyes' do |w , p, j, r|
+    @bar_chart = Grapher.bar_chart("Resultados en #{w}",{:Piedad => [[p.to_i],Grapher::RED], 
+                                     :Jojoy => [[j.to_i],Grapher::BLUE],
+                                     :Reyes => [[r.to_i],Grapher::GREEN]})
+    "graphs/show"
+  end
   post '/country' do 
     @country = CountriesController.show(@@params["key"])    
     @totales = @country.get_totals
-    @bar_chart = Grapher.bar_chart("Resultados",{:Piedad => [[@totales[:piedad]],Grapher::RED], 
-                                                  :Jojoy => [[@totales[:jojoy]],Grapher::BLUE],
-                                                  :Reyes => [[@totales[:reyes]],Grapher::GREEN]})
+    
     "countries/result"
   end
   

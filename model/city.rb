@@ -14,10 +14,12 @@ class City
   end
 
   def get_totals
-    @totales ||= {:piedad => 0, :reyes => 0, :jojoy => 0}
-    @centers.each do |center|
-      center.get_totals.each_pair do |c,v|
-        @totales[c] += v
+    if @totales.nil?
+      @totales ||= {:piedad => 0, :reyes => 0, :jojoy => 0}
+      @centers.each do |center|
+        center.get_totals.each_pair do |c,v|
+          @totales[c] += v
+        end
       end
     end
     @totales
