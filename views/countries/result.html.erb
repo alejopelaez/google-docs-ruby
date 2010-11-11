@@ -1,1 +1,28 @@
-<%= @country %>
+<table id="resultados">
+  <tr>
+    <th><%= @country.name.capitalize %></th>
+    <th>Departamento</th>
+    <th>Ciudad</th>
+    <th>Centro</th>
+    <th>Jojoy</th>
+    <th>Reyes</th>
+    <th>Piedad</th>
+  </tr>
+  <% @country.states.each do |s| %>
+    <% s.cities.each do |c| %>
+      <% c.centers.each do |center| %>
+        <% center.tables.each do |t| %>
+          <tr>
+	    <td></td>
+	    <td><%= s.name.capitalize %></td>
+	    <td><%= c.name.capitalize %></td>
+	    <td><%= center.name.capitalize %></td>
+	    <td><%= t.votos["jojoy"] %></td>
+	    <td><%= t.votos["reyes"] %></td>
+	    <td><%= t.votos["piedad"] %></td>
+	  </tr>
+	<% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</table>
