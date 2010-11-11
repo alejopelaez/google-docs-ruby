@@ -29,6 +29,7 @@ th {
     letter-spacing: 2px;
     text-transform: uppercase;
     text-align: left;
+<<<<<<< HEAD
     padding: 6px 6px 6px 12px;
     background: #CAE8EA url(public/images/bg_header.jpg) no-repeat;
 }
@@ -46,10 +47,63 @@ td {
     background: #fff;
     padding: 6px 6px 6px 12px;
     color: #4f6b72;
+=======
+    padding: 5px 5px 5px 15px;
+    margin: 0;
+    font-weight: bold;
+    font-size: 12px;
+    background-color: #cc0000;
+    color: white; }
+  #errorExplanation p {
+    color: #333333;
+    margin-bottom: 0;
+    padding: 8px; }
+  #errorExplanation ul {
+    margin: 2px 24px; }
+    #errorExplanation ul li {
+      font-size: 12px;
+      list-style: disc; }
+
+
+
+#resultados {
+	width: 700px;
+	padding: 0;
+	margin: 0;
+}
+
+th {
+	font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #4f6b72;
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	border-top: 1px solid #C1DAD7;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-align: left;
+	padding: 6px 6px 6px 12px;
+	background: #CAE8EA url(public/images/bg_header.jpg) no-repeat;
+}
+
+th.nobg {
+	border-top: 0;
+	border-left: 0;
+	border-right: 1px solid #C1DAD7;
+	background: none;
+}
+
+td {
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	background: #fff;
+	padding: 6px 6px 6px 12px;
+	color: #4f6b72;
+>>>>>>> 548a6bbb68bcd2a5c0ff5b91a73d9533cb99a6a3
 }
 
 
 td.alt {
+<<<<<<< HEAD
     background: #F5FAFA;
     color: #797268;
 }
@@ -61,3 +115,8 @@ table,td,tr,th{
   border-collapse:collapse;
   text-align: center;
  }
+=======
+	background: #F5FAFA;
+	color: #797268;
+}
+>>>>>>> 548a6bbb68bcd2a5c0ff5b91a73d9533cb99a6a3
