@@ -18,7 +18,7 @@ class RuteoApp
     @country = CountriesController.show(@@params["key"])    
     @totales = @country.get_totals
     
-    "countries/result"
+    "countries/result2"
   end
   
   get '/' do
@@ -35,7 +35,7 @@ class RuteoApp
       begin
         return [200, {'Content-Type' => 'text/html'}, self.class.htmlize(self.class.erb(route.action.call(*vals)))]
       rescue Exception => e
-        return [500, {'Content-Type' => 'text/html'}, '500 internall server error,#{e}']
+        return [500, {'Content-Type' => 'text/html'}, "500 internall server error,#{e}"]
       end
     end
   end

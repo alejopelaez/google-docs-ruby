@@ -1,0 +1,56 @@
+
+<!-- <h2> Total </h2> -->
+<!-- Piedad <%= @totales[:piedad] %><br/> -->
+<!-- Jojoy <%= @totales[:jojoy] %><br/> -->
+<!-- Reyes <%= @totales[:reyes] %><br/> -->
+
+
+
+<table id="resultados">
+  <tr>
+    <th class="nobg"> <%= link_image(@country.name, @country.get_totals) %></th>
+    <th>Departamento</th>
+    <th>Ciudad</th>
+    <th>Centro</th>
+    <th>Mesa</th>
+    <th>Jojoy</th>
+    <th>Reyes</th>
+    <th>Piedad</th>
+  </tr>
+  <% alt = false %>
+  <% @country.states.each do |s| %>
+    <tr>
+      <td></td>
+      <% if alt %><td class="alt"><% else %><td><% end %><%= link_image(s.name, s.get_totals) %></td>
+      <% cities = 0 %>
+      <% s.cities.each do |c| %>
+        <% if cities > 0 %> <td></td> <td></td><% end %>
+        <% if alt %><td class="alt"><% else %><td><% end %><%= link_image(c.name, c.get_totals) %></td>
+	<% centers = 0 %>
+        <% c.centers.each do |center| %>
+	  <% if centers > 0 %><td></td> <td></td> <td></td><% end %>
+	  <% if alt %><td class="alt"><% else %><td><% end %><%= link_image(center.name, center.get_totals) %></td>
+	  <% mesas = 0 %>
+          <% center.tables.each do |t| %>
+	    <% if mesas > 0 %><td></td><td></td> <td></td> <td></td><% end %>
+      	    <% if alt %><td class="alt"><% else %><td><% end %><%= link_image(t.name, t.get_totals) %></td>
+	    <% if alt %><td class="alt"><% else %><td><% end %><%= t.votos["jojoy"] %></td>
+	    <% if alt %><td class="alt"><% else %><td><% end %><%= t.votos["reyes"] %></td>
+	    <% if alt %><td class="alt"><% else %><td><% end %><%= t.votos["piedad"] %></td>
+            </tr>
+            <% alt = !alt %>
+	    <% mesas += 1%>
+	  <% end %>
+	  <% centers += 1 %>
+	<% end %>
+	<% cities += 1 %>
+     <% end %>
+  <% end %>
+  <tr>
+    <td class="nobg" colspan="5">Total Nacional Consolidado </td>
+    <% if alt %><td class="alt"><% else %><td><% end %><%= @totales[:jojoy] %></td>
+    <% if alt %><td class="alt"><% else %><td><% end %><%= @totales[:reyes] %></td>
+    <% if alt %><td class="alt"><% else %><td><% end %><%= @totales[:piedad] %></td>
+  </tr>
+</table>
+
