@@ -4,9 +4,7 @@ body {
   background-color: #BDBDBD;
   }
 
-a {
-  color: blue; }
-  a img {
+a img {
     border: none; }
 
 .clear {
@@ -55,6 +53,10 @@ td.alt {
     background-color: #F5FAFA;
     color: #797268;
 }
+a.alt:link {
+    background-color: #F5FAFA;
+    color: #797268;1
+}
    
 #resultados {
   margin: 0 auto;}
@@ -63,3 +65,7 @@ table,td,tr,th{
   border-collapse:collapse;
   text-align: center;
  }
+a:link {text-decoration: none}
+a:visited {text-decoration: none}
+a:active {text-decoration: none}
+a:hover {text-decoration: underline}

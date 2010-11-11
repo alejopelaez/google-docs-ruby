@@ -6,6 +6,14 @@
   </head>
   <body>
     <div id="container">
+      <form action="/country" method="post">
+	<p> 
+	  <label for="key">Key: </label>
+	  <input type="text" id="key" name="key"/><br/>
+	</p>
+	<input type="submit" value="Submit"/>
+      </form>
+      
       <%= yield %>
     </div>
   </body>

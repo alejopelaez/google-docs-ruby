@@ -1,4 +1,3 @@
-require 'api/gdocs'
 class Table
   attr_accessor :id, :name, :votos
   def initialize(id, name, votos)
@@ -33,8 +32,8 @@ class Table
         end
       end
       Table.new(id,name,votos_content)
-    rescue
-      raise Exception.new("Problems with the sheet #{id}")
+    rescue Exception => e
+      raise Exception.new("Problems with the sheet #{id}, #{e}")
     end
   end
   

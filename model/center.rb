@@ -1,4 +1,3 @@
-require 'api/gdocs'
 class Center
   attr_accessor :id, :name, :tables
   def initialize(id, name, tables)
@@ -45,8 +44,8 @@ class Center
       end
       
       Center.new(id,name,tables)
-    rescue
-      raise Exception.new("Problems with the sheet #{id}")
+    rescue Exception => e
+      raise Exception.new("Problems with the sheet #{id}, #{e}")
     end
   end
   

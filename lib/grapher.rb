@@ -1,6 +1,5 @@
 
 module Grapher
-    require 'google_chart'
     #Default colors
     RED = "FF0000"
     GREEN = "00FF00"

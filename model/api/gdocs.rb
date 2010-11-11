@@ -1,6 +1,3 @@
-require 'httparty'
-require 'crack'
-
 module API
   class Gdocs
     include HTTParty

@@ -1,4 +1,3 @@
-require 'api/gdocs'
 class City
   attr_accessor :id, :name, :centers
   def initialize(id, name, centers)
@@ -46,8 +45,8 @@ class City
       end
       
       City.new(id,name,centers)
-    rescue
-      raise Exception.new("Problems with the sheet #{id}")
+    rescue Exception => e
+      raise Exception.new("Problems with the sheet #{id}, #{e}")
     end
   end
   

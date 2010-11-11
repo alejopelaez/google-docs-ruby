@@ -1,4 +1,3 @@
-require 'api/gdocs'
 class Country
   attr_accessor :id, :name, :states
   def initialize(id, name, states)
@@ -45,8 +44,8 @@ class Country
          State.getState(s)
       end
       Country.new(id, name, states)
-    rescue
-      raise Exception.new("Problems with the sheet #{id}")
+    rescue Exception => e
+     raise Exception.new("Problems with the sheet #{id}, #{e}")
     end
   end
 end

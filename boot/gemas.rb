@@ -1,0 +1,5 @@
+require 'erb'
+require 'tilt'
+require 'httparty'
+require 'crack'
+require 'google_chart'

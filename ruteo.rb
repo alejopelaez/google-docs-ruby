@@ -1,15 +1,8 @@
-require './lib/routes'
-require './lib/dsl'
-require './lib/template'
-require './lib/grapher'
-$LOAD_PATH << 'controller' 
-require 'countries_controller'
-$LOAD_PATH << 'model'
-require 'country'
-require 'state'
-require 'city'
-require 'center'
-require 'table'
+require './boot/gemas.rb'
+require './boot/libs.rb'
+require './boot/models.rb'
+require './boot/controls.rb'
+
 
 class RuteoApp
   include DSL
@@ -39,7 +32,11 @@ class RuteoApp
     if route.nil?
       return [404, {'Content-Type' => 'text/html'}, '404 page not found']
     else
-      return [200, {'Content-Type' => 'text/html'}, self.class.htmlize(self.class.erb(route.action.call(*vals)))]
+      begin
+        return [200, {'Content-Type' => 'text/html'}, self.class.htmlize(self.class.erb(route.action.call(*vals)))]
+      rescue Exception => e
+        return [500, {'Content-Type' => 'text/html'}, '500 internall server error,#{e}']
+      end
     end
   end
 
