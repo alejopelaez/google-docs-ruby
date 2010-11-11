@@ -1,4 +1,4 @@
 httparty
 crack
 tilt
-google_chart
+google_chart --source github.com
