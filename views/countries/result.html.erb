@@ -2,6 +2,8 @@ Piedad <%= @totales[:piedad] %><br/>
 Jojoy <%= @totales[:jojoy] %><br/>
 Reyes <%= @totales[:reyes] %><br/>
 
+<%= "<img src=\"#{@bar_chart}\" alt=\"Resultados\" />" %>
+
 <table id="resultados">
   <tr>
     <th class="nobg"><%= @country.name.capitalize %></th>
