@@ -11,26 +11,31 @@ require 'center'
 require 'table'
 class RuteoApp
   include DSL
-
+  include Template
+  @@params = []
   get '/country/:id' do |id|
     c = CountriesController.new
     c.show(id)
     #  0AsTunpthKrMxdEp5R1loYjBBcVhNQWVEc1BUZmZ1QUE
   end
-
-  get '/sample' do
-    @hi  = "hola"
-    @bye = 'chao'
-    Template.out('views/hola.html.erb',@hi,@bye)
+  
+  post '/country' do 
+    @country = CountriesController.show(@@params["key"])
+    "countries/result"
+  end
+  
+  get '/' do
+    "index"
   end
   def call(env)
     path = env["PATH_INFO"]
     method = env['REQUEST_METHOD']
+    @@params = Rack::Request.new(env).params
     route,vals = self.class.routes.match method, path
     if route.nil?
       return [404, {'Content-Type' => 'text/html'}, '404 page not found']
     else
-      return [200, {'Content-Type' => 'text/html'}, route.action.call(*vals)]
+      return [200, {'Content-Type' => 'text/html'}, self.class.htmlize(self.class.erb(route.action.call(*vals)))]
     end
   end
 

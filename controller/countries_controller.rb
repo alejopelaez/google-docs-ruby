@@ -1,6 +1,6 @@
 
 class CountriesController
-  def show(id)
-    Country.getCountry(id).to_s
+  def self.show(id)
+    Country.getCountry(id)
   end
 end

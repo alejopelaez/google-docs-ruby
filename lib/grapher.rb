@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'google_chart'
 
 module Grapher
