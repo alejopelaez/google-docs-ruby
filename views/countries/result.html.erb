@@ -1,6 +1,6 @@
-<%= "Piedad: #{@totales[:piedad]}" %><br/>
-<%= "Jojoy: #{@totales[:reyes]}" %><br/>
-<%= "Reyes: #{@totales[:jojoy]}" %><br/>
+Piedad <%= @totales[:piedad] %><br/>
+Jojoy <%= @totales[:jojoy] %><br/>
+Reyes <%= @totales[:reyes] %><br/>
 
 <table id="resultados">
   <tr>
@@ -31,5 +31,11 @@
       <% end %>
     <% end %>
   <% end %>
+  <tr>
+    <td class="nobg" colspan="4">Total Nacional Consolidado </td>
+    <% if alt %><td class="alt"><% else %><td><% end %><%= @totales[:jojoy] %></td>
+    <% if alt %><td class="alt"><% else %><td><% end %><%= @totales[:reyes] %></td>
+    <% if alt %><td class="alt"><% else %><td><% end %><%= @totales[:piedad] %></td>
+  </tr>
 </table>
 

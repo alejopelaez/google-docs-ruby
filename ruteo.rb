@@ -13,12 +13,7 @@ class RuteoApp
   include DSL
   include Template
   @@params = []
-  get '/country/:id' do |id|
-    c = CountriesController.new
-    c.show(id)
-    #  0AsTunpthKrMxdEp5R1loYjBBcVhNQWVEc1BUZmZ1QUE
-  end
-  
+    
   post '/country' do 
     @country = CountriesController.show(@@params["key"])    
     @totales = @country.get_totals
