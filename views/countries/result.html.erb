@@ -1,6 +1,6 @@
 <table id="resultados">
   <tr>
-    <th><%= @country.name.capitalize %></th>
+    <th class="nobg"><%= @country.name.capitalize %></th>
     <th>Departamento</th>
     <th>Ciudad</th>
     <th>Centro</th>
@@ -8,19 +8,21 @@
     <th>Reyes</th>
     <th>Piedad</th>
   </tr>
+  <% alt = false %>
   <% @country.states.each do |s| %>
     <% s.cities.each do |c| %>
       <% c.centers.each do |center| %>
         <% center.tables.each do |t| %>
-          <tr>
+          <tr>	  
 	    <td></td>
-	    <td><%= s.name.capitalize %></td>
-	    <td><%= c.name.capitalize %></td>
-	    <td><%= center.name.capitalize %></td>
-	    <td><%= t.votos["jojoy"] %></td>
-	    <td><%= t.votos["reyes"] %></td>
-	    <td><%= t.votos["piedad"] %></td>
+	    <% if alt %><td class="alt"><% else %><td><% end %><%= s.name.capitalize %></td>
+	    <% if alt %><td class="alt"><% else %><td><% end %><%= c.name.capitalize %></td>
+	    <% if alt %><td class="alt"><% else %><td><% end %><%= center.name.capitalize %></td>
+	    <% if alt %><td class="alt"><% else %><td><% end %><%= t.votos["jojoy"] %></td>
+	    <% if alt %><td class="alt"><% else %><td><% end %><%= t.votos["reyes"] %></td>
+	    <% if alt %><td class="alt"><% else %><td><% end %><%= t.votos["piedad"] %></td>
 	  </tr>
+	  <% alt = !alt %>
 	<% end %>
       <% end %>
     <% end %>
